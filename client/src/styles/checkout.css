@@ -1,0 +1,86 @@
+/* checkout.css */
+
+.checkout-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Căn giữa nội dung trong container */
+    justify-content: center; /* Căn giữa theo chiều dọc */
+  }
+  
+  .checkout-container h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #4B5563; /* Màu xám tối, nhẹ nhàng */
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 1.5rem;
+  }
+  
+  .checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%; /* Đảm bảo form chiếm hết chiều rộng của container */
+    max-width: 600px; /* Đặt giới hạn chiều rộng tối đa */
+  }
+  
+  .checkout-form input,
+  .checkout-form select {
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 1px solid #d1d5db; /* Viền nhẹ nhàng màu xám */
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .checkout-form input:focus,
+  .checkout-form select:focus {
+    border-color: #4B5563; /* Màu xám tối khi focus */
+    box-shadow: 0 0 10px rgba(75, 85, 99, 0.3); /* Ánh sáng nhẹ khi focus */
+    outline: none;
+  }
+  
+  .payment-method {
+    font-size: 1rem;
+  }
+  
+  .payment-method select {
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    border: 1px solid #d1d5db;
+  }
+  
+  .checkout-total {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #6B7280; 
+    text-align: right;
+  }
+  
+  button {
+    padding: 0.8rem 1.5rem;
+    background-color: #10B981; 
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    align-self: flex-end;
+  }
+  
+  button:hover {
+    background-color: #059669; 
+  }
+  
+  button:active {
+    transform: translateY(0);
+  }
+  

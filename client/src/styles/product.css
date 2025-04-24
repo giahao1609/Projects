@@ -1,0 +1,123 @@
+/* Bao quanh toàn bộ danh sách sản phẩm */
+
+/* Danh sách sản phẩm */
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Mặc định 5 cột */
+  gap: 16px; /* Khoảng cách giữa các sản phẩm */
+  margin-top: 20px;
+  width: 80%; /* Chiều rộng của container sản phẩm (20% cho khoảng trống trái phải) */
+  margin: 0 auto; /* Căn giữa container */
+
+}
+
+/* Định nghĩa các media query */
+@media (max-width: 1200px) {
+  .product-list {
+    grid-template-columns: repeat(4, 1fr); /* 4 cột khi màn hình nhỏ hơn 1200px */
+  }
+}
+
+@media (max-width: 992px) {
+  .product-list {
+    grid-template-columns: repeat(3, 1fr); /* 3 cột khi màn hình nhỏ hơn 992px */
+  }
+}
+
+@media (max-width: 768px) {
+  .product-list {
+    grid-template-columns: repeat(2, 1fr); /* 2 cột khi màn hình nhỏ hơn 768px */
+  }
+}
+
+@media (max-width: 480px) {
+  .product-list {
+    grid-template-columns: 1fr; /* 1 cột khi màn hình nhỏ hơn 480px */
+  }
+}
+
+/* Product card */
+.product-card {
+  border: 1px solid #e5e7eb;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  background-color: white; /* Thêm nền trắng cho card để nổi bật hơn */
+  transition: transform 0.3s ease-in-out; /* Hiệu ứng hover */
+}
+
+.product-card:hover {
+  transform: scale(1.05); /* Khi hover, phóng to card */
+}
+
+/* Link trong card */
+.product-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px; /* Thêm bo góc cho ảnh sản phẩm */
+  transition: transform 0.3s ease-in-out; /* Hiệu ứng hover */
+}
+
+.product-image:hover {
+  transform: scale(1.1); /* Khi hover, phóng to ảnh */
+}
+
+/* Thông tin sản phẩm */
+.product-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 10px;
+}
+
+.product-meta-item {
+  font-size: 14px;
+  color: #555;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Giá sản phẩm */
+.product-price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: gray;
+  font-size: 16px;
+}
+
+.discount-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #f97316; /* Màu sắc nổi bật cho giá giảm */
+}
+
+/* Nút thêm vào giỏ hàng */
+.add-to-cart-btn {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #2563eb;
+  transform: scale(1.05); /* Hiệu ứng phóng to khi hover */
+}

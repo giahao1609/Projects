@@ -1,0 +1,78 @@
+/* Toàn bộ nền modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* overlay nền */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+  
+  /* Hộp chứa nội dung modal */
+  .modal-dialog {
+    background: white;
+    border-radius: 10px;
+    padding: 24px;
+    width: 100%;
+    max-width: 420px;
+    max-height: 90vh; /* Giới hạn chiều cao để không bị tràn */
+    overflow-y: auto;  /* Cho phép scroll nếu nội dung dài */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  /* Header của modal */
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  
+  /* Nút đóng (dấu x) */
+  .btn-close {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #555;
+  }
+  
+  /* Body modal (nơi render form) */
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Nút trong modal */
+  .modal-body button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Hiệu ứng mở modal */
+  @keyframes fadeIn {
+    from {
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+  
