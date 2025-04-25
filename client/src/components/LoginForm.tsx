@@ -3,7 +3,7 @@ import '../styles/auth.css';
 
 interface LoginFormProps {
   showRegister: () => void;
-  onLoginSuccess: (username: string, token: string) => void; // ✅ thêm token vào props
+  onLoginSuccess: (username: string, token: string, role: string) => void; // ✅ thêm token vào props
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ showRegister, onLoginSuccess }) => {
@@ -26,12 +26,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ showRegister, onLoginSuccess }) =
       });
 
       const result = await response.json();
-      console.log('🔑 Token từ server:', result.token);
+      console.log('🔑 Response từ server:', result); // Log toàn bộ response
 
       if (response.ok) {
-        alert('✅ Đăng nhập thành công');
         const username = result.username || formData.email;
-        onLoginSuccess(username, result.token); // ✅ truyền token thật về header
+        const role = result.role || 'user'; // Đảm bảo luôn có role
+        console.log('✅ Đăng nhập thành công với role:', role); // Log role
+        onLoginSuccess(username, result.token, role);
       } else {
         alert(`⚠️ ${result.message}`);
       }

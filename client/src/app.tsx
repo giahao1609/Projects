@@ -12,6 +12,9 @@ import UserOrdersPage from './pages/UserOrdersPage';
 import BrandsPage from './pages/BrandsPage';
 import ScalesPage from './pages/ScalesPage';
 import SeriesPage from './pages/SeriesPage';
+import ProductDetailPage from './pages/ProductDetailPage';
+import AllProducts from './pages/AllProducts';
+import AdminDashboard from './pages/admin/AdminDashboard';
 
 const App: React.FC = () => {
   return (
@@ -29,8 +32,11 @@ const App: React.FC = () => {
 
           {/* ✅ Thêm các route cho brand, scale, series và sản phẩm */}
           <Route path="/products/brands/:brandName" element={<BrandsPage />} />
-          <Route path="/scales/:scaleId" element={<ScalesPage />} />
-          <Route path="/series/:seriesId" element={<SeriesPage />} />
+          <Route path="/products/scale/:scaleName" element={<ScalesPage />} />
+          <Route path="/products/series/:seriesName" element={<SeriesPage />} />
+          <Route path="/products/:productName" element={<ProductDetailPage />} />
+          <Route path="/products" element={<AllProducts />} />
+          <Route path="/admin/*" element={<AdminDashboard />} />
         </Routes>
       </main>
 

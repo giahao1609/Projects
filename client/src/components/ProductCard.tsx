@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCartStore } from '../store/cartStore';
 import api from '../axiosConfig';
+import '../styles/ProductCard.css';
 
 interface ProductProps {
   product: {
@@ -54,13 +55,13 @@ const ProductCard: React.FC<ProductProps> = ({ product }) => {
 
   return (
     <div className="product-card">
-      <Link to={`/product/${product._id}`} className="product-link">
+      <Link to={`/products/${encodeURIComponent(product.name)}`} className="product-link">
         <img
           alt={product.name}
           src={`/assets/${product.name}/${product.image}`}
           className="product-image"
         />
-        <h3>{product.name}</h3>
+        <h3 className="product-name">{product.name}</h3>
       </Link>
 
       <div className="product-meta">

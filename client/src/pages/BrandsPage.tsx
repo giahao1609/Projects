@@ -1,44 +1,45 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';  // Thêm useParams để lấy giá trị từ URL
-import ProductCard from '../components/ProductCard';  // Import ProductCard
-import api from '../axiosConfig';  // Import axios từ file axiosConfig.ts
+import { useParams } from 'react-router-dom';
+import ProductCard from '../components/ProductCard';
+import api from '../axiosConfig';
 
 interface Product {
   _id: string;
   name: string;
   description: string;
-  price: number;
-  oldPrice: number;  // Có thể không có nếu không có giá cũ
-  discountPrice: number;  // Có thể không có nếu không có giá giảm
+  oldPrice: number;
+  discountPrice: number;
   category: string;
+  brand: string;
+  series: string;
+  ratio: string;
+  scale: string;
   stock: number;
-  image: string; // required luôn
-  series: string; // Dòng sản phẩm, ví dụ: "Product01"
-  brand: string;  // Thêm thuộc tính brand
-  scale: string;  // Thêm thuộc tính scale
+  image: string; // chắc chắn có
+  gallery?: string[]; // Cập nhật đúng theo schema
 }
 
 const BrandPage: React.FC = () => {
-  const { brandName } = useParams<{ brandName: string }>();  // Lấy brandName từ URL
+  const { brandName } = useParams<{ brandName: string }>();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (brandName) {
-      api.get(`/products/brands/${encodeURIComponent(brandName)}`)  // Sử dụng URL với brandName
+      api.get(`/products/brands/${encodeURIComponent(brandName)}`)
         .then(res => {
-          setProducts(res.data);  // Dữ liệu sẽ có trong res.data
+          setProducts(res.data);
         })
         .catch(err => {
           console.error('Lỗi khi tải sản phẩm:', err);
-          setError(err.message);  // Lưu thông báo lỗi
+          setError(err.message);
         })
         .finally(() => {
-          setLoading(false);  // Khi hoàn thành tải dữ liệu (hoặc có lỗi), tắt trạng thái loading
+          setLoading(false);
         });
     }
-  }, [brandName]);  // Thêm brandName vào dependency list để gọi lại khi thay đổi
+  }, [brandName]);
 
   if (loading) {
     return (
@@ -54,17 +55,32 @@ const BrandPage: React.FC = () => {
   }
 
   return (
-    <div className="product-list-wrapper">
-      {/* Thêm ImageSlider trước danh sách sản phẩm */}
+    <div className="brands-page">
+      <div className="brands-header">
+        <h1 className="brand-title">{brandName}</h1>
+        <p className="brand-description">Khám phá các sản phẩm từ thương hiệu {brandName}</p>
+      </div>
 
-      <div className="product-list">
-        {products.length > 0 ? (
-          products.map((product) => (
-            <ProductCard key={product._id} product={product} />
-          ))
-        ) : (
-          <div>Không có sản phẩm nào để hiển thị</div>
-        )}
+      <div className="product-list-wrapper">
+        <div className="product-list">
+          {products.length > 0 ? (
+            products.map((product) => {
+              const mainImage = product.image || product.gallery?.[0] || '/assets/default-image.jpg';
+
+              return (
+                <ProductCard
+                  key={product._id}
+                  product={{
+                    ...product,
+                    image: mainImage, // Gán ảnh chính cho ProductCard
+                  }}
+                />
+              );
+            })
+          ) : (
+            <div className="no-products">Không có sản phẩm nào để hiển thị</div>
+          )}
+        </div>
       </div>
     </div>
   );

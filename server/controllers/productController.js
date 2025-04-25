@@ -149,22 +149,39 @@ const getProductsByBrand = async (req, res) => {
 // Lấy sản phẩm theo scale
 const getProductsByScale = async (req, res) => {
   try {
-    const products = await Product.find({ scale: req.params.scaleId });
-    res.status(200).json(products);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Lỗi khi lấy sản phẩm theo scale", error: err.message });
+    const { scaleName } = req.params;
+    const products = await Product.find({ scale: scaleName });
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
 // Lấy sản phẩm theo series
 const getProductsBySeries = async (req, res) => {
   try {
-    const products = await Product.find({ series: req.params.seriesId });
-    res.status(200).json(products);
+    const { seriesName } = req.params;
+    const products = await Product.find({ series: seriesName });
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Thêm hàm mới để lấy sản phẩm theo tên
+const getProductByName = async (req, res) => {
+  const { name } = req.params;
+
+  try {
+    const product = await Product.findOne({ name: decodeURIComponent(name) });
+    if (!product) {
+      return res.status(404).json({ message: "Sản phẩm không tồn tại" });
+    }
+
+    res.status(200).json(product);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: "Lỗi khi lấy sản phẩm theo series", error: err.message });
+    res.status(500).json({ message: "Lỗi khi lấy sản phẩm", error: err.message });
   }
 };
 
@@ -177,5 +194,6 @@ module.exports = {
   searchProducts,
   getProductsByBrand,
   getProductsByScale,
-  getProductsBySeries
+  getProductsBySeries,
+  getProductByName
 };

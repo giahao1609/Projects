@@ -10,7 +10,8 @@ const {
   searchProducts,
   getProductsByBrand,
   getProductsByScale,
-  getProductsBySeries
+  getProductsBySeries,
+  getProductByName
 } = require('../controllers/productController');
 
 const router = express.Router();
@@ -28,7 +29,9 @@ router.delete('/admin-product/:id', authenticateToken, authorizeAdmin, deletePro
 router.get('/products/search', searchProducts);
 
 router.get('/brands/:brandName', getProductsByBrand);
-router.get('/scales/:scaleId', getProductsByScale);
-router.get('/series/:seriesId', getProductsBySeries);
+router.get('/scales/:scaleName', getProductsByScale);
+router.get('/series/:seriesName', getProductsBySeries);
+
+router.get('/name/:name', getProductByName);
 
 module.exports = router;
